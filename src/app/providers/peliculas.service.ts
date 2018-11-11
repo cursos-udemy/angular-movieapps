@@ -11,7 +11,7 @@ export class PeliculasService {
   private metodo: string = "JSONP"; //JSONP o HTTP
   private apiKey: string = "e6e40ec50350d64727ad55e1bc4cf246";
   private moviedbURL: string = "https://api.themoviedb.org/3";
-  private imagesURL:string = "https://image.tmdb.org/t/p/w300";
+  private imagesURL: string = "https://image.tmdb.org/t/p/w300";
 
   constructor(private http: HttpClient, private jsonp: Jsonp) {}
 
@@ -45,5 +45,21 @@ export class PeliculasService {
     }&language=es&callback=JSONP_CALLBACK`;
 
     return this.jsonp.get(url);
+  }
+
+  public getCartelera() {
+    let fechaDesde: Date = new Date(); //2014-09-15
+    let fechaHasta: Date = new Date(); //2014-09-15
+    let url = `${
+      this.moviedbURL
+    }/discover/movie?primary_release_date.gte=${this.convert(fechaDesde)}&primary_release_date.lte=${this.convert(fechaHasta)}&api_key=${
+      this.apiKey
+    }&language=es&callback=JSONP_CALLBACK`;
+
+    return this.jsonp.get(url);
+  }
+
+  private convert(fecha: Date): string {
+    return `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDay()}`;
   }
 }

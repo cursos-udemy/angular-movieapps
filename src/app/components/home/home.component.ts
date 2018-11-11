@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private peliculasService: PeliculasService) {
     peliculasService.getPopulares().subscribe(data => console.log(data));
+    peliculasService.getCartelera().subscribe(data => console.log(data));
   }
 
   ngOnInit() {
