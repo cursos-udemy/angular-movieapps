@@ -52,14 +52,16 @@ export class PeliculasService {
     let fechaHasta: Date = new Date(); //2014-09-15
     let url = `${
       this.moviedbURL
-    }/discover/movie?primary_release_date.gte=${this.convert(fechaDesde)}&primary_release_date.lte=${this.convert(fechaHasta)}&api_key=${
+    }/discover/movie?primary_release_date.gte=${this.convert(
+      fechaDesde
+    )}&primary_release_date.lte=${this.convert(fechaHasta)}&api_key=${
       this.apiKey
     }&language=es&callback=JSONP_CALLBACK`;
 
-    return this.jsonp.get(url);
+    return this.jsonp.get(url).pipe(map((res: any) => res._body.results));
   }
 
   private convert(fecha: Date): string {
-    return `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDay()}`;
+    return `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`;
   }
 }

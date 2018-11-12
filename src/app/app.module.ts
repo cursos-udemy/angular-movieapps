@@ -1,14 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
-import { JsonpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
-import { AppRoutingModule } from './app.routes';
-import { SearchComponent } from './components/search/search.component';
-import { MovieComponent } from './components/movie/movie.component';
+import { JsonpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
+import { AppRoutingModule } from "./app.routes";
+
+//COMPONENTS
+import { AppComponent } from "./app.component";
+import { HomeComponent } from "./components/home/home.component";
+import { MovieComponent } from "./components/movie/movie.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { SearchComponent } from "./components/search/search.component";
+
+//PIPES
+import { MovieImagePipe } from "./pipes/movie-image.pipe";
+
+// PROVIDERS
+import { PeliculasService } from "./providers/peliculas.service";
 
 @NgModule({
   declarations: [
@@ -16,15 +24,11 @@ import { MovieComponent } from './components/movie/movie.component';
     NavbarComponent,
     HomeComponent,
     SearchComponent,
-    MovieComponent
+    MovieComponent,
+    MovieImagePipe
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    JsonpModule,
-    AppRoutingModule
-  ],
-  providers: [],
+  imports: [BrowserModule, HttpClientModule, JsonpModule, AppRoutingModule],
+  providers: [PeliculasService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
