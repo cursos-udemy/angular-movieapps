@@ -17,6 +17,7 @@ import { MovieImagePipe } from "./pipes/movie-image.pipe";
 
 // PROVIDERS
 import { PeliculasService } from "./providers/peliculas.service";
+import { GaleriaComponent } from './components/home/galeria.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PeliculasService } from "./providers/peliculas.service";
     HomeComponent,
     SearchComponent,
     MovieComponent,
-    MovieImagePipe
+    MovieImagePipe,
+    GaleriaComponent
   ],
   imports: [BrowserModule, HttpClientModule, JsonpModule, AppRoutingModule],
   providers: [PeliculasService],

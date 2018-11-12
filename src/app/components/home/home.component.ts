@@ -8,13 +8,16 @@ import { PeliculasService } from "../../providers/peliculas.service";
 })
 export class HomeComponent implements OnInit {
   public cartelera: any[];
+  public populares: any[];
+  public popularesChicos: any[];
 
   constructor(private peliculasService: PeliculasService) {
-    peliculasService.getPopulares().subscribe(data => console.log("populares",data));
-    peliculasService.getCartelera().subscribe(data => {
-      this.cartelera = data;
-      console.log("cartelera:" ,this.cartelera);
-    });
+    peliculasService.getPopulares().subscribe(data => (this.populares = data));
+
+    peliculasService.getCartelera().subscribe(data => (this.cartelera = data));
+    peliculasService
+      .getPopularesChicos()
+      .subscribe(data => (this.popularesChicos = data));
   }
 
   ngOnInit() {}

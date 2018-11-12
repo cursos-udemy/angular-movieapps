@@ -30,7 +30,7 @@ export class PeliculasService {
   }
 
   private getPopularesJSONP(url: string) {
-    return this.jsonp.get(url + "&callback=JSONP_CALLBACK");
+    return this.jsonp.get(url + "&callback=JSONP_CALLBACK").pipe(map((res: any) => res._body.results.slice(0,6)));
   }
 
   private getPopularesHTTP(url: string) {
@@ -44,7 +44,7 @@ export class PeliculasService {
       this.apiKey
     }&language=es&callback=JSONP_CALLBACK`;
 
-    return this.jsonp.get(url);
+    return this.jsonp.get(url).pipe(map((res: any) => res._body.results.slice(0,6)));
   }
 
   public getCartelera() {
@@ -58,8 +58,20 @@ export class PeliculasService {
       this.apiKey
     }&language=es&callback=JSONP_CALLBACK`;
 
-    return this.jsonp.get(url).pipe(map((res: any) => res._body.results));
+    return this.jsonp.get(url).pipe(map((res: any) => res._body.results.slice(0,6)));
   }
+
+  public getPopularesChicos() {
+    let url = `${
+      this.moviedbURL
+    }/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=${
+      this.apiKey
+    }&language=es&callback=JSONP_CALLBACK`;
+
+    return this.jsonp.get(url).pipe(map((res: any) => res._body.results.slice(0,6)));
+  }
+
+  
 
   private convert(fecha: Date): string {
     return `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`;
