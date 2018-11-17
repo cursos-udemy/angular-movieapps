@@ -12,6 +12,7 @@ export class PeliculasService {
   private apiKey: string = "e6e40ec50350d64727ad55e1bc4cf246";
   private moviedbURL: string = "https://api.themoviedb.org/3";
   private imagesURL: string = "https://image.tmdb.org/t/p/w300";
+  public peliculas: any[] = [];
 
   constructor(private http: HttpClient, private jsonp: Jsonp) {}
 
@@ -30,7 +31,9 @@ export class PeliculasService {
   }
 
   private getPopularesJSONP(url: string) {
-    return this.jsonp.get(url + "&callback=JSONP_CALLBACK").pipe(map((res: any) => res._body.results.slice(0,6)));
+    return this.jsonp
+      .get(url + "&callback=JSONP_CALLBACK")
+      .pipe(map((res: any) => res._body.results.slice(0, 6)));
   }
 
   private getPopularesHTTP(url: string) {
@@ -44,7 +47,12 @@ export class PeliculasService {
       this.apiKey
     }&language=es&callback=JSONP_CALLBACK`;
 
-    return this.jsonp.get(url).pipe(map((res: any) => res._body.results.slice(0,6)));
+    return this.jsonp.get(url).pipe(
+      map((res: any) => {
+        this.peliculas = res._body.results;
+        return this.peliculas;
+      })
+    );
   }
 
   public getCartelera() {
@@ -58,7 +66,9 @@ export class PeliculasService {
       this.apiKey
     }&language=es&callback=JSONP_CALLBACK`;
 
-    return this.jsonp.get(url).pipe(map((res: any) => res._body.results.slice(0,6)));
+    return this.jsonp
+      .get(url)
+      .pipe(map((res: any) => res._body.results.slice(0, 6)));
   }
 
   public getPopularesChicos() {
@@ -68,10 +78,10 @@ export class PeliculasService {
       this.apiKey
     }&language=es&callback=JSONP_CALLBACK`;
 
-    return this.jsonp.get(url).pipe(map((res: any) => res._body.results.slice(0,6)));
+    return this.jsonp
+      .get(url)
+      .pipe(map((res: any) => res._body.results.slice(0, 6)));
   }
-
-  
 
   private convert(fecha: Date): string {
     return `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`;
