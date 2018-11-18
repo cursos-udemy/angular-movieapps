@@ -6,15 +6,19 @@
   </div>
 
   <div class="col-md-7">
+    <h6>Sinopsis:</h6>
     <p class="text-justify">
       <small>
         {{pelicula.overview}}
-      </small>
+     </small>
     </p>
-    
-    <h6 *ngIf="pelicula.tagline">Frase Celebre:</h6>
-    <p *ngIf="pelicula.tagline" class="text-secondary">{{pelicula.tagline}}</p>
 
-    <p>Ranking: <span class="badge badge-info">  {{pelicula.vote_average|number:'.2-2'}}%</span></p>
+    <h6 *ngIf="pelicula.tagline">Frase Celebre:</h6>
+    <p *ngIf="pelicula.tagline" class="text-secondary font-italic">{{pelicula.tagline}}</p>
+
+    <p>Promedio: <span class="badge badge-info">  {{pelicula.vote_average|number:'.2-2'}}%</span></p>
+
+    <button type="button" class="btn btn-outline-danger btn-block"
+    (click)="regresar();"> Regresar</button>
   </div>
 </div>

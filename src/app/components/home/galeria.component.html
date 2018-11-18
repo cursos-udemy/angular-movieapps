@@ -8,16 +8,19 @@
             <div class="col-md-12 div-pic-1 puntero"
                 [routerLink]="['/movie', peliculas[0].id, 'home' ]"
                 [ngStyle]="{'background-image': 'url('+(peliculas[0]|movieImage)+')'}">
+                <p class="pic-titulo"><small>{{peliculas[0].original_title}}</small></p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 div-pic-2 puntero"
                 [routerLink]="['/movie', peliculas[1].id, 'home' ]"
                 [ngStyle]="{'background-image': 'url('+(peliculas[1]|movieImage)+')'}">
+                <p class="pic-titulo"><small>{{peliculas[1].original_title}}</small></p>
             </div>
             <div class="col-md-6 div-pic-2 puntero"
                 [routerLink]="['/movie', peliculas[2].id, 'home' ]"
                 [ngStyle]="{'background-image': 'url('+(peliculas[2]|movieImage)+')'}">
+                <p class="pic-titulo"><small>{{peliculas[2].original_title}}</small></p>
             </div>
         </div>
     </div>
@@ -26,16 +29,19 @@
             <div class="col-md-6 div-pic-2 puntero"
                 [routerLink]="['/movie', peliculas[3].id, 'home' ]"
                 [ngStyle]="{'background-image': 'url('+(peliculas[3]|movieImage)+')'}">
-        </div>
+                <p class="pic-titulo"><small>{{peliculas[3].original_title}}</small></p>
+            </div>
             <div class="col-md-6 div-pic-2 puntero"
                 [routerLink]="['/movie', peliculas[4].id, 'home' ]"
                 [ngStyle]="{'background-image': 'url('+(peliculas[4]|movieImage)+')'}">
+                <p class="pic-titulo"><small>{{peliculas[4].original_title}}</small></p>
             </div>
         </div>        
         <div class="row">
             <div class="col-md-12 div-pic-1 puntero"
                 [routerLink]="['/movie', peliculas[5].id, 'home' ]"
                 [ngStyle]="{'background-image': 'url('+(peliculas[5]|movieImage)+')'}">
+                <p class="pic-titulo"><small>{{peliculas[5].original_title}}</small></p>
             </div>
         </div>
     </div>
