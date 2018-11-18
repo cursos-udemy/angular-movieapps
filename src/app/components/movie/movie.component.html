@@ -1,3 +1,20 @@
-<p>
-  movie works!
-</p>
+<h1 *ngIf="pelicula"> {{pelicula.original_title}} </h1>
+<div class="row animated fadeIn fast" *ngIf="pelicula">
+  <div class="col-md-5">
+    <img [src]="pelicula | movieImage:true" [alt]="pelicula.title"
+    class="img-thumbnail img-fluid">
+  </div>
+
+  <div class="col-md-7">
+    <p class="text-justify">
+      <small>
+        {{pelicula.overview}}
+      </small>
+    </p>
+    
+    <h6 *ngIf="pelicula.tagline">Frase Celebre:</h6>
+    <p *ngIf="pelicula.tagline" class="text-secondary">{{pelicula.tagline}}</p>
+
+    <p>Ranking: <span class="badge badge-info">  {{pelicula.vote_average|number:'.2-2'}}%</span></p>
+  </div>
+</div>

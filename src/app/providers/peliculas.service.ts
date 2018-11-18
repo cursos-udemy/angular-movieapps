@@ -83,6 +83,14 @@ export class PeliculasService {
       .pipe(map((res: any) => res._body.results.slice(0, 6)));
   }
 
+  public getPelicula(id: string) {
+    let url = `${this.moviedbURL}/movie/${id}?api_key=${
+      this.apiKey
+    }&language=es&callback=JSONP_CALLBACK`;
+
+    return this.jsonp.get(url).pipe(map((res: any) => res._body));
+  }
+
   private convert(fecha: Date): string {
     return `${fecha.getFullYear()}-${fecha.getMonth() + 1}-${fecha.getDate()}`;
   }
